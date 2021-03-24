@@ -1,0 +1,40 @@
+SET nextflow pipeline for CIVET
+===============================
+
+Run Civet conversion tool, from *.mnc to *.nii.gz,
+for the processed t1, brain_mask, all segmentations (pve), and ANIMAL labels.
+Register back to the original given t1.nii.gz / t1.mnc
+
+USAGE
+
+nextflow run main.nf  --civet
+
+DESCRIPTION
+    --civet=/path/to/[civet]
+                                    [civet] (Civet output)
+                                    ├── S1/
+                                    |   ├── classify/
+                                    |   |   ├── *pve_exactwm.mnc
+                                    |   |   ├── *pve_exactgm.mnc
+                                    |   |   ├── *pve_exactcsf.mnc
+                                    |   |   ├── *pve_exactsc.mnc
+                                    |   ├── final/
+                                    |   |   └── *t1_final.mnc
+                                    |   ├── mask/
+                                    |   |   └── *brain_mask.mnc
+                                    |   ├── segment/
+                                    |   |   └── *animal_labels.mnc
+                                    |   └── transforms/linear/
+                                    |       └── *t1_tal.xfm
+                                    |
+                                    └── S2/
+                                    │   └── ...
+                                    ...
+
+
+NOTES
+
+The default config file is civet-nf/nextflow.config.
+Use '-C config_file.config' to specify a non-default configuration file.
+The '-C config_file.config' must be inserted after the nextflow call
+like 'nextflow -C config_file.config run ...'.
